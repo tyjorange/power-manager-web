@@ -1,0 +1,11 @@
+<template>
+    <div>
+        user list
+    </div>
+</template>
+
+<script>
+export default {
+  name: 'userList'
+}
+</script>
