@@ -31,42 +31,36 @@
         </el-row>
       </el-header>
       <el-container>
-        <el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" router>
+        <el-menu router :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+
+          <el-menu-item index="#">
+            <i class="el-icon-menu"></i>
+            <span slot="title">首页</span>
+          </el-menu-item>
+
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span slot="title">导航一</span>
             </template>
-            <el-menu-item-group>
-              <span slot="title">分组一</span>
-              <el-menu-item index="/userlist">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <span slot="title">选项4</span>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
+            <el-menu-item index="/1">选项1</el-menu-item>
+            <el-menu-item index="/userlist">选项2</el-menu-item>
+            <el-menu-item index="/devicelist">选项3</el-menu-item>
           </el-submenu>
-          <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航二</span>
-          </el-menu-item>
-          <el-menu-item index="3" disabled>
-            <i class="el-icon-document"></i>
-            <span slot="title">导航三</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航四</span>
-          </el-menu-item>
+
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span slot="title">导航二</span>
+            </template>
+            <el-menu-item index="1-3">选项4</el-menu-item>
+          </el-submenu>
+
         </el-menu>
         <el-container>
           <el-main>
             <!--子组件加载到内层router-view-->
-            <router-view class="rightRV" name="right_router"></router-view>
+            <router-view></router-view>
           </el-main>
           <el-footer>Footer</el-footer>
         </el-container>
@@ -105,14 +99,14 @@ export default {
               successResponse.data.code,
               successResponse.data.msg
             );
-            this.$router.replace({ path: "/login" });
+            this.$router.replace({ path: "/" });
           } else if (successResponse.data.code === 403) {
             this.common.notysucc(
               this.$notify,
               successResponse.data.code,
               successResponse.data.msg
             );
-            this.$router.replace({ path: "/login" });
+            this.$router.replace({ path: "/" });
           }
         })
         .catch(failResponse => {});
