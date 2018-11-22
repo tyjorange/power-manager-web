@@ -3,9 +3,9 @@ import Router from 'vue-router'
 import mLogin from '@/components/Login.vue'
 import mIndex from '@/components/Index.vue'
 import mCommMeun from '@/components/comm/CommMeun.vue'
-import mUserList from '@/components/NavBarItem/UserList.vue'
-import mDeviceList from '@/components/NavBarItem/DeviceList.vue'
-import mDashBoard from '@/components/dashboard/DashBoard.vue'
+import mUserList from '@/components/pages/UserList.vue'
+import mDeviceList from '@/components/pages/DeviceList.vue'
+import mDashBoard from '@/components/pages/DashBoard.vue'
 
 Vue.use(Router)
 
@@ -72,7 +72,7 @@ export default new Router({
             },{
               path: '/25',
               name: '功率因数',
-              components: {main_view: mDashBoard}
+              components: {main_view: mDeviceList}
             }
           ]
         },{
