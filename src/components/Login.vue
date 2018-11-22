@@ -1,6 +1,5 @@
 <template>
   <transition name="el-zoom-in-bottom">
-    <!-- <comm-header></comm-header> -->
     <div class="login">
       <div class="login-form">
         <div class="login-header">
@@ -23,18 +22,14 @@
         </div>
       </div>
     </div>
-    <!-- <comm-footer></comm-footer> -->
   </transition>
 </template>
 
 <script>
-// import commHeader from "@/components/comm/CommHeader.vue";
-// import commFooter from "@/components/comm/CommFooter.vue";
 
 export default {
   name: "Login",
-  // commHeader、commFooter组件给申明到components里面然后在template里面使用
-  // components: { commHeader, commFooter },
+
   data() {
     return {
       loginInfoVo: { username: "", password: "" },

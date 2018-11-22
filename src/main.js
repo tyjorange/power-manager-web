@@ -19,6 +19,10 @@ Vue.use(ElementUI)
 import common from "./components/comm/common.js";
 Vue.prototype.common = common
 
+//引入echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
