@@ -50,7 +50,7 @@ export default new Router({
         },{
           path: '2',//主菜单
           name: '电能质量监视和分析',
-          icon: 'el-icon-tickets',
+          icon: 'el-icon-printer',
           components: {root_view: mCommMeun},
           children: [//子菜单
             {
@@ -78,7 +78,7 @@ export default new Router({
         },{
           path: '3',//主菜单
           name: '高精度电能计量',
-          icon: 'el-icon-tickets',
+          icon: 'el-icon-news',
           components: {root_view: mCommMeun},
           children: [//子菜单
             {
@@ -94,7 +94,7 @@ export default new Router({
         },{
           path: '4',//主菜单
           name: '电能消耗统计和分析',
-          icon: 'el-icon-tickets',
+          icon: 'el-icon-document',
           components: {root_view: mCommMeun},
           children: [//子菜单
             {
@@ -138,17 +138,17 @@ export default new Router({
         },{
           path: '/a',//主菜单
           name: '报警和事件管理',
-          icon: 'el-icon-menu',
+          icon: 'el-icon-bell',
           components: {root_view: mCommMeun},
         },{
           path: '/b',//主菜单
           name: '历史数据管理',
-          icon: 'el-icon-menu',
+          icon: 'el-icon-date',
           components: {root_view: mCommMeun},
         },{
           path: '5',//主菜单
           name: '用户权限管理',
-          icon: 'el-icon-tickets',
+          icon: 'el-icon-service',
           components: {root_view: mCommMeun},
           children: [//子菜单
             {
