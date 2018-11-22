@@ -42,8 +42,8 @@ export default {
       this.loginLoading = true;
       this.$axios
         .post("/auth/login", {
-          userName: this.loginInfoVo.username,
-          passWord: this.loginInfoVo.password
+          username: this.loginInfoVo.username,
+          password: this.loginInfoVo.password
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
