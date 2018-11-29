@@ -52,8 +52,8 @@
       </el-form-item>
     </el-form>
   </el-col>
-  <el-table :data="rows.tableData" style="width: 100%;overflow: auto;" :height="clientHeight" stripe border 
-    highlight-current-row v-loading="pageLoading" :row-class-name="tableRowClassName" show-summary align="center">
+  <el-table :data="rows.tableData" style="width: 100%; margin-top: 20px" stripe border
+    highlight-current-row v-loading="pageLoading" show-summary :summary-method="getSummaries" align="center">
     <el-table-column label="用能单元" width="200" prop="switchName"  style="height:50px" fixed>
     </el-table-column>
     <el-table-column :label=this.filters.month width="800" :show-overflow-tooltip="true">
@@ -65,14 +65,14 @@
             :key="col.key"
             width="120px" style="height:50px">
            </el-table-column>
-         </template>
+      </template>
     </el-table-column>
   </el-table>
   <!--底部-->
-  <el-col :span="24" class="toolbar">
+  <!-- <el-col :span="24" class="toolbar">
     <el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
     </el-pagination>
-  </el-col>
+  </el-col> -->
 
 </section>
 </template>
@@ -150,6 +150,16 @@ let getRows = function() {
     data:params
   }).then((res)=>{
    this.pageLoading = false
+
+    if(res.data.code === 403) {
+      this.common.notywarn(
+        this.$notify,
+        res.data.code,
+        res.data.msg
+      );
+      this.$router.replace({ path: "/" });
+    }
+      
     if (!res.data || !res.data.data)
       return
     //总数赋值
@@ -204,15 +214,40 @@ export default {
     initHeight,
     //改变行样式
     tableRowClassName({row, rowIndex}) {
-        if (rowIndex === 1) {
-          return 'warning-row';
-        } else if (rowIndex === 3) {
-          return 'success-row';
+      if (rowIndex === 1) {
+        return 'warning-row';
+      } else if (rowIndex === 3) {
+        return 'success-row';
+      }
+      return '';
+    },
+    getSummaries(param) {
+      const { columns, data } = param;
+      const sums = [];
+      columns.forEach((column, index) => {
+        if (index === 0) {
+          sums[index] = '总计';
+          return;
         }
-        return '';
-      },
-
-      
+        const values = data.map(item => {
+         return Number(item.timeValue[column.property.split('.')[1]])
+        });
+        if (!values.every(value => isNaN(value))) {
+          sums[index] = values.reduce((prev, curr) => {
+            const value = Number(curr);
+            if (!isNaN(value)) {
+              return prev + curr;
+            } else {
+              return prev;
+            }
+          }, 0);
+          // sums[index] += ' 元';
+        } else {
+          sums[index] = 'N/A';
+        }
+      });
+      return sums;
+    }
   },
   mounted: function() {
     window.addEventListener('resize', this.initHeight)
