@@ -56,17 +56,45 @@
     highlight-current-row v-loading="pageLoading" :row-class-name="tableRowClassName" show-summary align="center">
     <el-table-column label="用能单元" width="200" prop="switchName"  style="height:50px" fixed>
     </el-table-column>
-    <el-table-column :label=this.filters.month width="800" :show-overflow-tooltip="true">
-      <template v-for='(col) in rows.cols'>
-          <el-table-column
-            :show-overflow-tooltip="true"
-            :label="col.label"
-            :prop="col.prop"
-            :key="col.key"
-            width="120px" style="height:50px">
-           </el-table-column>
-         </template>
-    </el-table-column>
+    <div v-if="this.filters.timeTypeValue == 0">
+      <el-table-column width="800" :label=this.filters.month :show-overflow-tooltip="true">
+        <template v-for='(col) in rows.cols'>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              :label="col.label"
+              :prop="col.prop"
+              :key="col.key"
+              width="120px" style="height:50px">
+            </el-table-column>
+          </template>
+      </el-table-column>
+    </div>
+    <div v-if="this.filters.timeTypeValue == 1">
+      <el-table-column width="800" :label=this.filters.year :show-overflow-tooltip="true">
+        <template v-for='(col) in rows.cols'>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              :label="col.label"
+              :prop="col.prop"
+              :key="col.key"
+              width="120px" style="height:50px">
+            </el-table-column>
+          </template>
+      </el-table-column>
+    </div>
+    <div v-if="this.filters.timeTypeValue == 2">
+      <el-table-column width="800" label="年份（单位：万千瓦时）" :show-overflow-tooltip="true">
+        <template v-for='(col) in rows.cols'>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              :label="col.label"
+              :prop="col.prop"
+              :key="col.key"
+              width="120px" style="height:50px">
+            </el-table-column>
+          </template>
+      </el-table-column>
+    </div>
   </el-table>
   <!--底部-->
   <el-col :span="24" class="toolbar">
