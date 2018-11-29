@@ -27,7 +27,7 @@
           <span class="demonstration">月</span>
           <el-date-picker
             v-model="filters.month"
-            format="yyyy-MM" 
+            format="yyyy-MM"
             value-format="yyyy-MM"
             type="month"
             placeholder="选择月">
@@ -37,7 +37,7 @@
           <span class="demonstration">年</span>
           <el-date-picker
             v-model="filters.year"
-            format="yyyy" 
+            format="yyyy"
             value-format="yyyy"
             type="year"
             placeholder="选择年">
@@ -56,17 +56,45 @@
     highlight-current-row v-loading="pageLoading" show-summary :summary-method="getSummaries" align="center">
     <el-table-column label="用能单元" width="200" prop="switchName"  style="height:50px" fixed>
     </el-table-column>
-    <el-table-column :label=this.filters.month width="800" :show-overflow-tooltip="true">
-      <template v-for='(col) in rows.cols'>
-          <el-table-column
-            :show-overflow-tooltip="true"
-            :label="col.label"
-            :prop="col.prop"
-            :key="col.key"
-            width="120px" style="height:50px">
-           </el-table-column>
-      </template>
-    </el-table-column>
+    <div v-if="this.filters.timeTypeValue == 0">
+      <el-table-column width="800" :label=this.filters.month :show-overflow-tooltip="true">
+        <template v-for='(col) in rows.cols'>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              :label="col.label"
+              :prop="col.prop"
+              :key="col.key"
+              width="120px" style="height:50px">
+            </el-table-column>
+          </template>
+      </el-table-column>
+    </div>
+    <div v-if="this.filters.timeTypeValue == 1">
+      <el-table-column width="800" :label=this.filters.year :show-overflow-tooltip="true">
+        <template v-for='(col) in rows.cols'>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              :label="col.label"
+              :prop="col.prop"
+              :key="col.key"
+              width="120px" style="height:50px">
+            </el-table-column>
+          </template>
+      </el-table-column>
+    </div>
+    <div v-if="this.filters.timeTypeValue == 2">
+      <el-table-column width="800" label="年份（单位：万千瓦时）" :show-overflow-tooltip="true">
+        <template v-for='(col) in rows.cols'>
+            <el-table-column
+              :show-overflow-tooltip="true"
+              :label="col.label"
+              :prop="col.prop"
+              :key="col.key"
+              width="120px" style="height:50px">
+            </el-table-column>
+          </template>
+      </el-table-column>
+    </div>
   </el-table>
   <!--底部-->
   <!-- <el-col :span="24" class="toolbar">
@@ -99,8 +127,8 @@ let data = () => {
     //页面载入状态
     pageLoading: false,
     //列表高度
-    clientHeight: '100%', 
-    switchs : [], 
+    clientHeight: '100%',
+    switchs : [],
     timeTypeOptions: [{
           value: '0',
           label: '逐日',
@@ -111,7 +139,7 @@ let data = () => {
           value: '2',
           label: '逐年'
         }]
-        
+
   }
 }
 
@@ -124,7 +152,7 @@ let handleEdit = function(index, row) {
 }
 
 let handleDelete = function(index, row) {
- 
+
 }
 
 let getRows = function() {
@@ -159,7 +187,7 @@ let getRows = function() {
       );
       this.$router.replace({ path: "/" });
     }
-      
+
     if (!res.data || !res.data.data)
       return
     //总数赋值
@@ -167,7 +195,7 @@ let getRows = function() {
     this.page++;
     //页面元素赋值
     this.rows = res.data.data;
-  }).catch(e => this.pageLoading = false)   
+  }).catch(e => this.pageLoading = false)
 }
 
 let handleQuery = function() {
