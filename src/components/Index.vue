@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="12" style="text-align: left;">
             <div class="logo">
-              <span class="big">控制台</span>
+              <span class="big">能源管理系统</span>
             </div>
           </el-col>
           <el-col :span="12" style="text-align: right;">
@@ -170,7 +170,7 @@ export default {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
+  // line-height: 160px;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 230px;

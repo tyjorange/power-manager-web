@@ -6,6 +6,7 @@ import mCommMeun from '@/components/comm/CommMeun.vue'
 import mUserList from '@/components/pages/UserList.vue'
 import mDeviceList from '@/components/pages/DeviceList.vue'
 import mDashBoard from '@/components/pages/DashBoard.vue'
+import mGradeTime from '@/components/pages/GradeTime.vue'
 
 Vue.use(Router)
 
@@ -104,7 +105,7 @@ export default new Router({
             },{
               path: '/42',
               name: '电能分时统计',
-              components: {main_view: mDeviceList}
+              components: {main_view: mGradeTime}
             },{
               path: '/43',
               name: '分时计费统计',
