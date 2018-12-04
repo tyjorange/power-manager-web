@@ -59,14 +59,14 @@
     <div v-if="this.filters.timeTypeValue == 0">
       <el-table-column width="800" :label=this.filters.month :show-overflow-tooltip="true">
         <template v-for='(col) in rows.cols'>
-            <el-table-column
-              :show-overflow-tooltip="true"
-              :label="col.label"
-              :prop="col.prop"
-              :key="col.key"
-              width="120px" style="height:50px">
-            </el-table-column>
-          </template>
+          <el-table-column
+            :show-overflow-tooltip="true"
+            :label="col.label"
+            :prop="col.prop"
+            :key="col.key"
+            width="120px" style="height:50px">
+          </el-table-column>
+        </template>
       </el-table-column>
     </div>
     <div v-if="this.filters.timeTypeValue == 1">
