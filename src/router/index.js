@@ -7,6 +7,8 @@ import mUserList from '@/components/pages/UserList.vue'
 import mDeviceList from '@/components/pages/DeviceList.vue'
 import mDashBoard from '@/components/pages/DashBoard.vue'
 import mGradeTime from '@/components/pages/GradeTime.vue'
+import mGradeSubentry from '@/components/pages/GradeSubentry.vue'
+import mClassifySumm from '@/components/pages/ClassifySumm.vue'
 
 Vue.use(Router)
 
@@ -100,11 +102,11 @@ export default new Router({
           children: [//子菜单
             {
               path: '/41',
-              name: '实时电能统计',
-              components: {main_view: mUserList}
+              name: '分级分项统计',
+              components: {main_view: mGradeSubentry}
             },{
               path: '/42',
-              name: '电能分时统计',
+              name: '分级分时统计',
               components: {main_view: mGradeTime}
             },{
               path: '/43',
@@ -121,7 +123,7 @@ export default new Router({
             },{
               path: '/46',
               name: '分类汇总统计',
-              components: {main_view: mDashBoard}
+              components: {main_view: mClassifySumm}
             },{
               path: '/47',
               name: '同期对比分析',
