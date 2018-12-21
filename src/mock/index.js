@@ -13,6 +13,13 @@ const user = Mock.mock(
       msg: '登录test'
     }
   })
+const gradeSubentry = Mock.mock(
+  '/gradeSubentry', 'post', (req, res) => {
+     return {
+       code: 200,
+       msg: '登录test'
+    }
+  })
 
 export default {
   vehicle,

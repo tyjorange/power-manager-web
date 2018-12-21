@@ -89,17 +89,36 @@
     <div slot="header" class="clearfix" style="text-align: left;">
       <span style="color:#2DC3D0;"><i class="el-icon-info"></i> <b>分项占比</b> </span>
     </div>
-    <div class="text item">
-      
-    </div>
+    <!-- 图表 -->
+    <template>
+       <div id="itemPieChart" style="width:100%;height:350px;text-align: center;"></div>
+    </template>
+    
   </el-card>
   <el-card class="box-card" style="width:49.85%;height: 420px;float:right;margin-top: 8px;">
     <div slot="header" class="clearfix" style="text-align: left;">
       <span style="color:#2DC3D0;"><i class="el-icon-info"></i> <b>分级占比</b> </span>
     </div>
-    <div class="text item">
-      
-    </div>
+    <template>
+      <el-table
+        :data="tableData"
+        style="width: 100%" id="gradeTable">
+        <el-table-column
+          prop="date"
+          label=""
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="name"
+          label=""
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="address"
+          label="">
+        </el-table-column>
+      </el-table>
+    </template>
   </el-card>
 
   
@@ -113,6 +132,14 @@
 </template>
 
 <script>
+
+// 引入基本模板
+let echarts = require("echarts/lib/echarts");
+// 引入饼状图组件
+require("echarts/lib/chart/pie");
+// 引入提示框和title组件
+require("echarts/lib/component/tooltip");
+require("echarts/lib/component/title");
 
 let data = () => {
   return {
@@ -145,8 +172,17 @@ let data = () => {
         }, {
           value: '2',
           label: '年'
-        }]
-
+        }],
+    tableData: [{
+            date: '索罗思腾内网测试',
+            name: '0.55',
+            address: '50%'
+          }, {
+            date: '201811062222',
+            name: '0.55',
+            address: '50%'
+          }]
+   
   }
 }
 
@@ -229,6 +265,53 @@ let geCollector = function() {
         });
 }
 
+let drawPie = function() {
+    // 基于准备好的dom，初始化echarts实例
+    let itemPieChart = echarts.init(document.getElementById("itemPieChart"));
+    // 绘制图表
+    itemPieChart.setOption({
+      title : {
+          text: '能源分项占比统计图',
+          x:'center'
+      },
+      tooltip : {
+          trigger: 'item',
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+      },
+      legend: {
+          orient : 'vertical',
+          x : 'left',
+          data:['空调','客厅','照明','测试1','测试2']
+      },
+      series: [{
+          name: '能源用量',
+          type: 'pie',
+          radius: '55%',
+          data: [{
+              value: 235,
+              name: '空调'
+            },
+            {
+              value: 274,
+              name: '客厅'
+            },
+            {
+              value: 310,
+              name: '照明'
+            },
+            {
+              value: 335,
+              name: '测试1'
+            },
+            {
+              value: 400,
+              name: '测试2'
+            }
+          ]
+        }]
+    });
+}
+
 export default {
   data: data,
   methods: {
@@ -248,6 +331,8 @@ export default {
     geCollector,
     //初始化高度
     initHeight,
+    //初始化饼状图
+    drawPie,
     //改变行样式
     tableRowClassName({row, rowIndex}) {
       if (rowIndex === 1) {
@@ -283,12 +368,31 @@ export default {
         }
       });
       return sums;
+    },
+    drawLine() {
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = echarts.init(document.getElementById("myChart"));
+      // 绘制图表
+      myChart.setOption({
+        title: { text: "ECharts 入门示例" },
+        tooltip: {},
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "销量",
+            type: "bar",
+            data: [5, 20, 36, 10, 10, 20]
+          }
+        ]
+      });
     }
   },
-  mounted: function() {
-    window.addEventListener('resize', this.initHeight)
-    this.initHeight()
-    this.getRows()
+  mounted() {
+    this.drawPie()
+    this.drawLine();
   }
 }
 </script>
@@ -300,5 +404,8 @@ export default {
 
   .el-table .success-row {
     background: #f0f9eb;
+  }
+  #gradeTable .has-gutter {
+    display: none;
   }
 </style>

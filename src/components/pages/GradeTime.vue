@@ -40,32 +40,24 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <div
-            class="block"
-            v-if="this.filters.timeTypeValue == 0"
-          >
+          <div class="block" v-if="this.filters.timeTypeValue == 0">
             <span class="demonstration">月</span>
             <el-date-picker
               v-model="filters.month"
               format="yyyy-MM"
               value-format="yyyy-MM"
               type="month"
-              placeholder="选择月"
-            >
+              placeholder="选择月">
             </el-date-picker>
           </div>
-          <div
-            class="block"
-            v-if="this.filters.timeTypeValue == 1"
-          >
+          <div class="block" v-if="this.filters.timeTypeValue == 1">
             <span class="demonstration">年</span>
             <el-date-picker
               v-model="filters.year"
               format="yyyy"
               value-format="yyyy"
               type="year"
-              placeholder="选择年"
-            >
+              placeholder="选择年">
             </el-date-picker>
           </div>
         </el-form-item>

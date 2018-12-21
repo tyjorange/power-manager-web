@@ -9,6 +9,7 @@ import mDashBoard from '@/components/pages/DashBoard.vue'
 import mGradeTime from '@/components/pages/GradeTime.vue'
 import mGradeSubentry from '@/components/pages/GradeSubentry.vue'
 import mClassifySumm from '@/components/pages/ClassifySumm.vue'
+import mCompH from '@/components/pages/CompH.vue'
 
 Vue.use(Router)
 
@@ -127,7 +128,7 @@ export default new Router({
             },{
               path: '/47',
               name: '同期对比分析',
-              components: {main_view: mDashBoard}
+              components: {main_view: mCompH}
             },{
               path: '/48',
               name: '用能趋势分析',
