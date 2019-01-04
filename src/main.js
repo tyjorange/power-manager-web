@@ -8,9 +8,10 @@ var axios = require('axios')
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 //访问后端方式：
 // 1.使用web api
-axios.defaults.baseURL = 'http://localhost:8081/web_api'
+axios.defaults.baseURL = 'http://localhost:8082/web_api'
+//axios.defaults.baseURL = 'http://116.62.38.203:8081/web_api'
 // 2.使用mock 
-// require('./mock');
+//npmrequire('./mock');
 // 将API方法绑定到全局
 Vue.prototype.$axios = axios
 axios.defaults.withCredentials = true
@@ -26,13 +27,13 @@ Vue.prototype.common = common
 //引入echarts
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
-Vue.use(echarts)
-
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
